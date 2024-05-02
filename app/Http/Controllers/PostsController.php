@@ -12,7 +12,7 @@ class PostsController extends Controller
    public function index()
    {
         $posts = Post::all(); // postsテーブルに保存されているデータをすべて取得
-        return view('posts.index', ['posts' => $posts]); // views/posts/index.blade.php を表示する
+        return view('posts.index', compact('posts')); // views/posts/index.blade.php を表示する
    }
 
    public function store(InquiryRequest $request)
@@ -26,7 +26,7 @@ class PostsController extends Controller
 
     public function show($id)
     {
-        $show = Post::find($id);
+        $post = Post::find($id);
 
         return view('posts.show', compact('post'));
     }

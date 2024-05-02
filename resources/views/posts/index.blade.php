@@ -41,7 +41,7 @@
    @foreach ($posts as $post) {{-- PostControllerのindexメソッド内の「$posts」を受け取る --}}
        <h3>タイトル：{{ $post->title }}</h3>
        <p>内容：{{ $post->message }}</p>
-       <td><a href="show.blade.php">記事全文・コメントを読む<BR><BR></a></td>
+       <td><a href="{{ route('posts.show', $post->id) }}">記事全文を読む・コメントする<br><br></a></td>
        <br>
    @endforeach
 </body>

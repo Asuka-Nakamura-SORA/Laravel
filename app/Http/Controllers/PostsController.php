@@ -1,8 +1,11 @@
 <?php
+
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post; // Postモデルを使用するために追加
+use App\Http\Requests\InquiryRequest;
 
 class PostsController extends Controller
 {
@@ -12,18 +15,13 @@ class PostsController extends Controller
         return view('posts.index', ['posts' => $posts]); // views/posts/index.blade.php を表示する
    }
 
-   public function store(Request $request)
+   public function store(InquiryRequest $request)
    {
        $post = new Post;
        $post->title = $request->title;
        $post->message = $request->message;
-       $request->validate([
-        'title' => ['required', 'max:30'],
-        'message' => ['required'],
-        ]);  
-        session()->flash('success', '投稿されました');
-        $post->save();
-        return redirect()->route('posts.index');
+       $post->save();
+       return redirect()->route('posts.index');
    }
 
     public function show($id)
@@ -32,6 +30,7 @@ class PostsController extends Controller
 
         return view('posts.show', compact('post'));
     }
+
 
 }
 

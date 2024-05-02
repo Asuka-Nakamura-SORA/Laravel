@@ -1,6 +1,4 @@
 <?php
-
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -19,8 +17,21 @@ class PostsController extends Controller
        $post = new Post;
        $post->title = $request->title;
        $post->message = $request->message;
-       $post->save();
-       return redirect()->route('posts.index');
+       $request->validate([
+        'title' => ['required', 'max:30'],
+        'message' => ['required'],
+        ]);  
+        session()->flash('success', '投稿されました');
+        $post->save();
+        return redirect()->route('posts.index');
    }
+
+    public function show($id)
+    {
+        $show = Post::find($id);
+
+        return view('posts.show', compact('post'));
+    }
+
 }
 

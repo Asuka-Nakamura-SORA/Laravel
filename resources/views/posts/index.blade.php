@@ -37,5 +37,6 @@
     <td><a href="{{ route('posts.show', $post->id) }}">記事全文を読む・コメントする<br><br></a></td>
     <br>
 @endforeach
+
 </body>
 </html>

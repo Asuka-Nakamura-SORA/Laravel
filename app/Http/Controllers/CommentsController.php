@@ -20,9 +20,9 @@ class CommentsController extends Controller
         return redirect()->back();
     }
 
-    public function show($comment)
+    public function show($comments)
     {
-        $comment = Comment::find($post_id);
+        $comments = Comment::find($comment);
 
         return view('comments.show', compact('comment'));
     }

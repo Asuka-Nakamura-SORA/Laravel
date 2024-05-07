@@ -33,6 +33,12 @@
     </div>
 @endif
 
+@foreach ($post->comments as $comment) {{-- CommentControllerのindexメソッド内の「$comments」を受け取る --}}
+    <p>コメント：{{ $comment->comment }}</p>
+    <td><a href="{{ route('posts.show', $post->id) }}">削除<br><br></a></td>
+    <br>
+@endforeach
+
 </body>
 </html>
 

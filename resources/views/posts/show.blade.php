@@ -33,11 +33,17 @@
     </div>
 @endif
 
+
 @foreach ($post->comments as $comment) {{-- CommentControllerのindexメソッド内の「$comments」を受け取る --}}
-    <p>コメント：{{ $comment->comment }}</p>
-    <td><a href="{{ route('posts.show', $post->id) }}">削除<br><br></a></td>
-    <br>
+    <p>{{ $comment->comment }}
+        
+<form action="{{ route('comments.destroy',$comment->id) }}" method="post">
+    @csrf
+    @method('DELETE')
+    <button type="submit" onclick='return confirm("本当に投稿しますか？");'>削除</button><br></p>
+</form>  
 @endforeach
+
 
 </body>
 </html>
